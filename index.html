@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco & Dulce | Nuestra Historia de Amor</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts: Cormorant Garamond (Títulos), Great Vibes (Caligrafía) y Montserrat (Texto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (Utilidades complementarias) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* ==========================================================================
+           VARIABLES DE COLOR Y TIPOGRAFÍA (ESTILO ROMÁNTICO ELEGANTE)
+           ========================================================================== */
+        :root {
+            --bg-cream: #FAF7F2;
+            --bg-ivory: #F3ECE3;
+            --wine-primary: #722F37;
+            --wine-dark: #4A1920;
+            --wine-light: #9E4752;
+            --gold-primary: #C5A059;
+            --gold-light: #E5C88E;
+            --text-dark: #2C2627;
+            --text-muted: #6E6264;
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-script: 'Great Vibes', cursive;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3, h4, .serif-font {
+            font-family: var(--font-serif);
+        }
+
+        .script-font {
+            font-family: var(--font-script);
+        }
+
+        /* ==========================================================================
+           BARRA DE NAVEGACIÓN
+           ========================================================================== */
+        .navbar-romantic {
+            background: rgba(250, 247, 242, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--wine-primary) !important;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--wine-primary) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 2px;
+            left: 50%;
+            background-color: var(--gold-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 60%;
+        }
+
+        /* ==========================================================================
+           SECCIÓN HERO & PARTÍCULAS
+           ========================================================================== */
+        .hero-section {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, rgba(114, 47, 55, 0.65) 0%, rgba(44, 38, 39, 0.88) 100%),
+                        url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+            color: #fff;
+            padding: 110px 15px 60px;
+            overflow: hidden;
+        }
+
+        #petalsCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .gold-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 1.2rem auto;
+        }
+
+        .gold-divider .line {
+            height: 1px;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+        }
+
+        /* ==========================================================================
+           TARJETAS DEL CONTADOR EN TIEMPO REAL
+           ========================================================================== */
+        .counter-mode-toggle {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            border-radius: 50px;
+            padding: 5px;
+            display: inline-flex;
+            gap: 5px;
+        }
+
+        .mode-btn {
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .mode-btn.active {
+            background: var(--gold-primary);
+            color: var(--wine-dark);
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
+        }
+
+        .counter-box {
+            background: rgba(250, 247, 242, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 160, 89, 0.45);
+            border-radius: 16px;
+            padding: 18px 10px;
+            min-width: 110px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .counter-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-light);
+        }
+
+        .counter-number {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--gold-light);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .counter-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* ==========================================================================
+           BOTONES PERSONALIZADOS
+           ========================================================================== */
+        .btn-wine {
+            background-color: var(--wine-primary);
+            color: #fff;
+            border: 1px solid var(--wine-primary);
+            border-radius: 50px;
+            padding: 10px 28px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-wine:hover {
+            background-color: var(--wine-dark);
+            border-color: var(--gold-primary);
+            color: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(114, 47, 55, 0.3);
+        }
+
+        .btn-gold-outline {
+            background-color: transparent;
+            color: var(--gold-primary);
+            border: 1px solid var(--gold-primary);
+            border-radius: 50px;
+            padding: 10px 26px;
+            font-size: 0.88rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold-outline:hover {
+            background-color: var(--gold-primary);
+            color: var(--wine-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           CARTA SELLADA EN LACRE & DEDICATORIA
+           ========================================================================== */
+        .wax-envelope-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f5efe6 100%);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(114, 47, 55, 0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .wax-seal-btn {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #9E4752, #722F37 60%, #4A1920 100%);
+            border: 3px double var(--gold-primary);
+            color: var(--gold-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(114, 47, 55, 0.4), inset 0 0 15px rgba(0,0,0,0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .wax-seal-btn:hover {
+            transform: scale(1.08) rotate(5deg);
+            box-shadow: 0 12px 30px rgba(114, 47, 55, 0.55);
+        }
+
+        .letter-paper {
+            background-color: #FFFDF9;
+            background-image: linear-gradient(rgba(197, 160, 89, 0.12) 1px, transparent 1px);
+            background-size: 100% 2.1rem;
+            border: 1px solid rgba(197, 160, 89, 0.35);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            line-height: 2.1rem;
+            box-shadow: inset 0 0 30px rgba(197, 160, 89, 0.08);
+            position: relative;
+        }
+
+        /* ==========================================================================
+           DISCO DE VINILO GIRATORIO
+           ========================================================================== */
+        .vinyl-record {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: repeating-radial-gradient(
+                #1a1a1a,
+                #1a1a1a 4px,
+                #282828 5px,
+                #1a1a1a 6px
+            );
+            border: 3px solid var(--gold-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            animation: spinVinyl 8s linear infinite;
+            animation-play-state: paused;
+        }
+
+        .vinyl-record.playing {
+            animation-play-state: running;
+        }
+
+        .vinyl-center {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--wine-primary);
+            border: 2px solid var(--gold-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-light);
+        }
+
+        @keyframes spinVinyl {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ==========================================================================
+           LÍNEA DEL TIEMPO INTERACTIVA
+           ========================================================================== */
+        .timeline-container {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--gold-primary) 10%, var(--wine-primary) 50%, var(--gold-primary) 90%, transparent);
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 767.98px) {
+            .timeline-container::before {
+                left: 24px;
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-dot {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--wine-primary);
+            border: 3px solid var(--gold-primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 767.98px) {
+            .timeline-dot {
+                left: 24px;
+            }
+        }
+
+        .timeline-card {
+            background: #fff;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(44, 38, 39, 0.06);
+            transition: all 0.35s ease;
+            cursor: pointer;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 15px 35px rgba(114, 47, 55, 0.14);
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background: var(--gold-primary);
+            color: var(--wine-dark);
+            transform: translateX(-50%) scale(1.12);
+        }
+
+        /* ==========================================================================
+           GALERÍA Y CARRUSEL
+           ========================================================================== */
+        .carousel-romantic {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(197, 160, 89, 0.4);
+            box-shadow: 0 15px 40px rgba(44, 38, 39, 0.15);
+        }
+
+        .carousel-item img {
+            height: 480px;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item img {
+                height: 320px;
+            }
+        }
+
+        #modalCarouselContainer .carousel-item img {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .carousel-caption-custom {
+            background: linear-gradient(to top, rgba(44, 38, 39, 0.85), rgba(44, 38, 39, 0.3), transparent);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 40px 20px 25px;
+        }
+
+        .gallery-card {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            background: #fff;
+            height: 280px;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(114, 47, 55, 0.85) 0%, rgba(114, 47, 55, 0.2) 60%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.25rem;
+            color: #fff;
+        }
+
+        .gallery-card:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* ==========================================================================
+           WIDGET FLOTANTE DE MÚSICA
+           ========================================================================== */
+        .floating-music-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1040;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--gold-primary);
+            border-radius: 50px;
+            padding: 8px 16px 8px 10px;
+            box-shadow: 0 10px 30px rgba(114, 47, 55, 0.22);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .floating-music-widget:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(114, 47, 55, 0.3);
+        }
+
+        .music-toggle-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--wine-primary);
+            color: var(--gold-light);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        /* ==========================================================================
+           PASE VIP DE CONFIRMACIÓN (TICKET)
+           ========================================================================== */
+        .vip-ticket {
+            background: linear-gradient(135deg, #4A1920 0%, #722F37 100%);
+            color: #fff;
+            border: 2px solid var(--gold-primary);
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(114, 47, 55, 0.3);
+        }
+
+        .vip-ticket::before, .vip-ticket::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 28px;
+            height: 28px;
+            background-color: var(--bg-cream);
+            border: 2px solid var(--gold-primary);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .vip-ticket::before { left: -16px; }
+        .vip-ticket::after { right: -16px; }
+
+        /* ==========================================================================
+           ANIMACIONES AL HACER SCROLL
+           ========================================================================== */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================================
+         BARRA DE NAVEGACIÓN FIJA
+         ========================================================================== -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-romantic py-2">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+                <i class="bi bi-suit-heart-fill text-danger" style="color: var(--wine-primary) !important; font-size: 1.2rem;"></i>
+                <span>Marco <span style="color: var(--gold-primary);">&amp;</span> Dulce</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menú">
+                <i class="bi bi-list fs-2" style="color: var(--wine-primary);"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#dedicatoria">Carta &amp; Canción</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#historia">Nuestra Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#galeria">Momentos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cena">Cena &amp; RSVP</a></li>
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                        <button class="btn btn-sm btn-gold-outline py-1 px-3" data-bs-toggle="modal" data-bs-target="#configDatesModal" title="Personalizar fechas y WhatsApp">
+                            <i class="bi bi-sliders me-1"></i> Ajustar Fechas
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==========================================================================
+         1. SECCIÓN HERO & CONTADOR EN TIEMPO REAL
+         ========================================================================== -->
+    <header id="inicio" class="hero-section text-center">
+        <!-- Lienzo de partículas/pétalos románticos -->
+        <canvas id="petalsCanvas"></canvas>
+
+        <div class="hero-content">
+            <span class="badge rounded-pill px-3 py-2 mb-3" style="background: rgba(197, 160, 89, 0.25); border: 1px solid var(--gold-primary); color: var(--gold-light); letter-spacing: 2px; font-weight: 400;">
+                FELIZ ANIVERSARIO, MI AMOR
+            </span>
+            
+            <h1 class="display-2 fw-bold mb-1" style="letter-spacing: 2px;">
+                Marco <span class="script-font fw-normal" style="color: var(--gold-light); font-size: 4rem;">&amp;</span> Dulce
+            </h1>
+            
+            <p class="fs-4 fst-italic serif-font text-light opacity-90 mb-3">
+                "Nuestra Historia de Amor: Cada segundo a tu lado es mi lugar favorito"
+            </p>
+
+            <div class="gold-divider">
+                <span class="line"></span>
+                <i class="bi bi-stars" style="color: var(--gold-primary);"></i>
+                <span class="line"></span>
+            </div>
+
+            <!-- Selector de Modo del Contador -->
+            <div class="my-4">
+                <div class="counter-mode-toggle" role="group" aria-label="Modo de contador">
+                    <button type="button" class="mode-btn active" id="btnModeTogether" onclick="switchCounterMode('together')">
+                        <i class="bi bi-infinity me-1"></i> Tiempo Juntos
+                    </button>
+                    <button type="button" class="mode-btn" id="btnModeDinner" onclick="switchCounterMode('dinner')">
+                        <i class="bi bi-calendar-heart me-1"></i> Próxima Cena de Aniversario
+                    </button>
+                </div>
+            </div>
+
+            <!-- Subtítulo dinámico según el modo -->
+            <p id="counterSubtitle" class="small text-uppercase mb-3" style="letter-spacing: 2px; color: var(--gold-light);">
+                Sumando instantes inolvidables desde nuestro primer día
+            </p>
+
+            <!-- Cajas del Contador en Tiempo Real -->
+            <div class="row g-3 justify-content-center max-w-2xl mx-auto px-2">
+                <div class="col-6 col-sm-3">
+                    <div class="counter-box">
+                        <div class="counter-number" id="cntDays">00</div>
+                        <div class="counter-label" id="lblDays">Días Juntos</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="counter-box">
+                        <div class="counter-number" id="cntHours">00</div>
+                        <div class="counter-label">Horas</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="counter-box">
+                        <div class="counter-number" id="cntMinutes">00</div>
+                        <div class="counter-label">Minutos</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="counter-box">
+                        <div class="counter-number" id="cntSeconds">00</div>
+                        <div class="counter-label">Segundos</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen detallado en años, meses y días -->
+            <div id="detailedTimeBadge" class="mt-3 small text-light opacity-85">
+                <!-- Se llena con JS -->
+            </div>
+
+            <!-- Botones de Acción Hero -->
+            <div class="mt-5 d-flex flex-wrap justify-content-center gap-3">
+                <a href="#dedicatoria" class="btn btn-wine px-4 py-2">
+                    <i class="bi bi-envelope-paper-heart me-2"></i>Leer Mi Carta Para Ti
+                </a>
+                <a href="#cena" class="btn btn-gold-outline text-light px-4 py-2">
+                    <i class="bi bi-geo-alt me-2"></i>Ver Invitación a Nuestra Cena
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+         2. NUESTRA CANCIÓN Y CARTA ESPECIAL SELLADA EN LACRE
+         ========================================================================== -->
+    <section id="dedicatoria" class="py-5 my-4">
+        <div class="container">
+            <div class="text-center mb-5 reveal-on-scroll">
+                <span class="text-uppercase small fw-semibold" style="letter-spacing: 3px; color: var(--wine-primary);">De Marco para Dulce</span>
+                <h2 class="display-5 fw-bold mt-1">Nuestra Canción &amp; Dedicatoria</h2>
+                <div class="gold-divider">
+                    <span class="line"></span>
+                    <i class="bi bi-music-note-beamed" style="color: var(--gold-primary);"></i>
+                    <span class="line"></span>
+                </div>
+            </div>
+
+            <div class="row g-4 align-items-stretch">
+                <!-- Columna Izquierda: Reproductor Romántico -->
+                <div class="col-lg-5 reveal-on-scroll">
+                    <div class="wax-envelope-card h-100 p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <span class="badge rounded-pill" style="background-color: var(--bg-ivory); color: var(--wine-primary); border: 1px solid var(--gold-primary);">
+                                    <i class="bi bi-disc me-1"></i> Banda Sonora de Nuestro Amor
+                                </span>
+                                <label class="btn btn-sm btn-outline-secondary rounded-pill py-0 px-2" style="font-size: 0.75rem;" title="Cargar tu propio archivo MP3 desde tu dispositivo">
+                                    <i class="bi bi-upload me-1"></i>Cambiar MP3
+                                    <input type="file" id="localAudioInput" accept="audio/*" class="d-none">
+                                </label>
+                            </div>
+
+                            <div class="text-center my-4">
+                                <div class="vinyl-record mx-auto mb-3" id="vinylDisc">
+                                    <div class="vinyl-center">
+                                        <i class="bi bi-heart-fill"></i>
+                                    </div>
+                                </div>
+                                <h4 class="fw-bold mb-1 serif-font" id="songTitleDisplay">Melodía de Nuestro Aniversario</h4>
+                                <p class="text-muted small mb-0" id="songArtistDisplay">Solo Tú Podrás - Nivel Codiciado &amp; Abelito Balderas — Para Dulce</p>
+                            </div>
+                        </div>
+
+                        <!-- Controles del Reproductor -->
+                        <div class="p-3 rounded-4" style="background: var(--bg-cream); border: 1px solid rgba(197, 160, 89, 0.3);">
+                            <div class="d-flex align-items-center justify-content-center gap-3 mb-2">
+                                <button class="btn btn-sm rounded-circle" style="color: var(--wine-primary);" onclick="restartMusic()" title="Reiniciar canción">
+                                    <i class="bi bi-skip-backward-fill fs-5"></i>
+                                </button>
+                                <button class="btn btn-wine rounded-circle d-flex align-items-center justify-content-center p-0" style="width: 54px; height: 54px;" id="mainPlayBtn" onclick="toggleMusic()">
+                                    <i class="bi bi-play-fill fs-3" id="mainPlayIcon"></i>
+                                </button>
+                                <button class="btn btn-sm rounded-circle" style="color: var(--wine-primary);" onclick="toggleMusicMode()" title="Alternar entre MP3 y Caja de Música">
+                                    <i class="bi bi-magic fs-5"></i>
+                                </button>
+                            </div>
+                            <div class="text-center">
+                                <small class="text-muted" id="musicStatusText">Haz clic en Play para escuchar mientras lees tu carta</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Sobre con Sello de Lacre Interactivo -->
+                <div class="col-lg-7 reveal-on-scroll">
+                    <div class="wax-envelope-card h-100 p-4 p-md-5 d-flex flex-column justify-content-center">
+                        
+                        <!-- Estado 1: Sobre Cerrado -->
+                        <div id="envelopeClosedState" class="text-center py-4">
+                            <p class="text-uppercase small fw-semibold mb-2" style="letter-spacing: 2px; color: var(--wine-primary);">
+                                <i class="bi bi-lock-fill me-1"></i> Mensaje Confidencial
+                            </p>
+                            <h3 class="serif-font fw-bold mb-3">Para: Mi hermosa Dulce</h3>
+                            <p class="text-muted mb-4 mx-auto" style="max-width: 440px;">
+                                He guardado en esta carta lo que siento por ti al cumplir un aniversario más juntos. Toca el sello de lacre para romperlo y abrirla.
+                            </p>
+
+                            <button type="button" class="wax-seal-btn" onclick="openRomanticLetter()" aria-label="Abrir carta">
+                                <span class="script-font fs-3 lh-1">M&amp;D</span>
+                                <small style="font-size: 0.6rem; letter-spacing: 1px;" class="text-uppercase mt-1">Abrir Carta</small>
+                            </button>
+                            
+                            <!-- Mensaje de advertencia si intenta abrirla antes del 8 de noviembre de 2026 -->
+                            <div id="letterLockedWarning" class="alert alert-warning mt-3 py-2 small d-none" role="alert">
+                                <i class="bi bi-clock-history me-1"></i> Esta carta se abrirá automáticamente el <strong>8 de noviembre de 2026</strong> en nuestro aniversario. ¡Falta poquito! ❤️
+                            </div>
+                        </div>
+
+                        <!-- Estado 2: Carta Abierta -->
+                        <div id="envelopeOpenState" class="d-none">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="small text-muted"><i class="bi bi-feather me-1"></i> Escrita con todo el corazón</span>
+                                <button class="btn btn-sm btn-link text-decoration-none p-0" style="color: var(--wine-primary);" onclick="closeRomanticLetter()">
+                                    <i class="bi bi-envelope-check me-1"></i>Volver a sellar
+                                </button>
+                            </div>
+
+                            <div class="letter-paper">
+                                <h4 class="script-font fs-1 mb-3" style="color: var(--wine-primary);">Mi querida Dulce,</h4>
+                                <p id="typewriterLetterText" class="serif-font fs-5 mb-4" style="white-space: pre-line; color: var(--text-dark);"></p>
+                                <div class="text-end mt-3">
+                                    <p class="mb-0 small text-muted text-uppercase" style="letter-spacing: 1px;">Con todo mi amor, hoy y siempre,</p>
+                                    <p class="script-font fs-2 mb-0" style="color: var(--wine-primary);">Marco</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. LÍNEA DEL TIEMPO INTERACTIVA ("NUESTRA LÍNEA DEL TIEMPO")
+         ========================================================================== -->
+    <section id="historia" class="py-5" style="background-color: var(--bg-ivory);">
+        <div class="container py-3">
+            <div class="text-center mb-5 reveal-on-scroll">
+                <span class="text-uppercase small fw-semibold" style="letter-spacing: 3px; color: var(--wine-primary);">Paso a Paso</span>
+                <h2 class="display-5 fw-bold mt-1">Nuestra Línea del Tiempo</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">
+                    Los capítulos más hermosos que nos trajeron hasta aquí. Haz clic en cualquier recuerdo para ver su historia completa.
+                </p>
+                <div class="gold-divider">
+                    <span class="line"></span>
+                    <i class="bi bi-hourglass-split" style="color: var(--gold-primary);"></i>
+                    <span class="line"></span>
+                </div>
+            </div>
+
+            <!-- Contenedor de los hitos (Se genera desde el arreglo en JS) -->
+            <div class="timeline-container" id="timelineContainer"></div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. GALERÍA Y CARRUSEL DE FOTOS ("NUESTROS MOMENTOS")
+         ========================================================================== -->
+    <section id="galeria" class="py-5 my-4">
+        <div class="container">
+            <div class="text-center mb-5 reveal-on-scroll">
+                <span class="text-uppercase small fw-semibold" style="letter-spacing: 3px; color: var(--wine-primary);">Álbum de Recuerdos</span>
+                <h2 class="display-5 fw-bold mt-1">Nuestros Momentos Favoritos</h2>
+                <p class="text-muted mx-auto" style="max-width: 650px;">
+                    Fotografías que guardan nuestras sonrisas, miradas y aventuras juntos.
+                </p>
+                <div class="gold-divider">
+                    <span class="line"></span>
+                    <i class="bi bi-camera-fill" style="color: var(--gold-primary);"></i>
+                    <span class="line"></span>
+                </div>
+            </div>
+
+            <!-- A) Carrusel Destacado Bootstrap 5 -->
+            <div class="row justify-content-center mb-5 reveal-on-scroll">
+                <div class="col-lg-10">
+                    <div id="coupleCarousel" class="carousel slide carousel-fade carousel-romantic" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#coupleCarousel" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#coupleCarousel" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#coupleCarousel" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <!-- Slide 1 -->
+                            <div class="carousel-item active" data-bs-interval="4500">
+                                <img src="b9976534-d99b-4107-9171-dd8234ca9288.jpg" class="d-block w-100" alt="Marco y Dulce Atardecer">
+                                <div class="carousel-caption carousel-caption-custom">
+                                    <span class="badge rounded-pill mb-2" style="background: var(--gold-primary); color: var(--wine-dark);">Inolvidable</span>
+                                    <h3 class="serif-font fw-bold">Caminando Juntos hacia el Futuro</h3>
+                                    <p class="small mb-0 opacity-90">No importa el destino si el camino lo recorro tomado de tu mano.</p>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="carousel-item" data-bs-interval="4500">
+                                <img src="IMG_4739.JPG" class="d-block w-100" alt="Risas y complicidad">
+                                <div class="carousel-caption carousel-caption-custom">
+                                    <span class="badge rounded-pill mb-2" style="background: var(--gold-primary); color: var(--wine-dark);">Complicidad</span>
+                                    <h3 class="serif-font fw-bold">Tu Sonrisa, Mi Paz</h3>
+                                    <p class="small mb-0 opacity-90">Gracias por hacer que hasta los días más simples se vuelvan extraordinarios.</p>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="carousel-item" data-bs-interval="4500">
+                                <img src="IMG_2484.jpg" class="d-block w-100" alt="Celebración romántica">
+                                <div class="carousel-caption carousel-caption-custom">
+                                    <span class="badge rounded-pill mb-2" style="background: var(--gold-primary); color: var(--wine-dark);">Aniversario</span>
+                                    <h3 class="serif-font fw-bold">Brindando por Nosotros</h3>
+                                    <p class="small mb-0 opacity-90">Por todos los sueños cumplidos y los miles que nos faltan por vivir.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#coupleCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#coupleCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- B) Barra de Filtros y Botón para Previsualizar Fotos Propias -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4 reveal-on-scroll">
+                <div class="d-flex flex-wrap gap-2" id="galleryFilters">
+                    <button class="btn btn-sm btn-wine px-3 filter-btn active" onclick="filterGallery('todos', this)">Todos</button>
+                    <button class="btn btn-sm btn-gold-outline px-3 filter-btn" onclick="filterGallery('citas', this)">Citas</button>
+                    <button class="btn btn-sm btn-gold-outline px-3 filter-btn" onclick="filterGallery('viajes', this)">Viajes</button>
+                    <button class="btn btn-sm btn-gold-outline px-3 filter-btn" onclick="filterGallery('especiales', this)">Momentos Especiales</button>
+                </div>
+
+                <div>
+                    <label class="btn btn-sm btn-gold-outline d-inline-flex align-items-center gap-2 cursor-pointer">
+                        <i class="bi bi-images"></i> Previsualizar mis fotos aquí
+                        <input type="file" id="customPhotoUpload" accept="image/*" multiple class="d-none">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Cuadrícula de Fotos -->
+            <div class="row g-4" id="photoGridContainer"></div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. CENA DE ANIVERSARIO, MAPA Y CONFIRMACIÓN (RSVP)
+         ========================================================================== -->
+    <section id="cena" class="py-5" style="background-color: var(--bg-ivory);">
+        <div class="container py-3">
+            <div class="text-center mb-5 reveal-on-scroll">
+                <span class="text-uppercase small fw-semibold" style="letter-spacing: 3px; color: var(--wine-primary);">Invitación Exclusiva</span>
+                <h2 class="display-5 fw-bold mt-1">Nuestra Cena de Aniversario</h2>
+                <p class="text-muted mx-auto" style="max-width: 620px;">
+                    Dulce, tengo preparada una velada muy especial para celebrar nuestro amor. Aquí están las coordenadas de nuestra cita.
+                </p>
+                <div class="gold-divider">
+                    <span class="line"></span>
+                    <i class="bi bi-cup-straw" style="color: var(--gold-primary);"></i>
+                    <span class="line"></span>
+                </div>
+            </div>
+
+            <div class="row g-4 align-items-stretch">
+                <!-- Columna Izquierda: Detalles del Lugar y Mapa -->
+                <div class="col-lg-6 reveal-on-scroll">
+                    <div class="wax-envelope-card h-100 p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px; background: var(--wine-primary); color: var(--gold-light);">
+                                    <i class="bi bi-calendar2-heart fs-3"></i>
+                                </div>
+                                <div>
+                                    <span class="text-uppercase small fw-bold" style="color: var(--gold-primary); letter-spacing: 1px;">Reserva para Dos</span>
+                                    <h3 class="serif-font fw-bold mb-0" id="dinnerPlaceTitle">Restaurante &amp; Terraza Romántica</h3>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-sm-6">
+                                    <div class="p-3 rounded-3 h-100" style="background: var(--bg-cream); border: 1px solid rgba(197, 160, 89, 0.25);">
+                                        <small class="text-muted d-block text-uppercase" style="font-size: 0.7rem; letter-spacing: 1px;">Fecha y Hora</small>
+                                        <strong class="d-block mt-1" id="dinnerDateFormatted">Sábado, hora por definir :D</strong>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="p-3 rounded-3 h-100" style="background: var(--bg-cream); border: 1px solid rgba(197, 160, 89, 0.25);">
+                                        <small class="text-muted d-block text-uppercase" style="font-size: 0.7rem; letter-spacing: 1px;">Código de Vestimenta</small>
+                                        <strong class="d-block mt-1"><i class="bi bi-stars me-1 text-warning"></i>que te veas hermosa</strong>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="p-3 rounded-3" style="background: var(--bg-cream); border: 1px solid rgba(197, 160, 89, 0.25);">
+                                        <small class="text-muted d-block text-uppercase" style="font-size: 0.7rem; letter-spacing: 1px;">Ubicación</small>
+                                        <strong class="d-block mt-1" id="dinnerAddressDisplay">Zona Centro, Aguascalientes, Ags., México</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="rounded-4 overflow-hidden border mb-3" style="height: 250px; border-color: rgba(197, 160, 89, 0.4) !important;">
+                                <iframe 
+                                    title="Mapa de la Cena de Aniversario"
+                                    width="100%" 
+                                    height="100%" 
+                                    style="border:0;" 
+                                    loading="lazy" 
+                                    allowfullscreen 
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    src="https://www.openstreetmap.org/export/embed.html?bbox=-102.3150%2C21.8700%2C-102.2750%2C21.9050&amp;layer=mapnik&amp;marker=21.8853%2C-102.2916">
+                                </iframe>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center">
+                            <span class="small text-muted"><i class="bi bi-car-front me-1"></i>Paso por ti 30 min antes</span>
+                            <a href="https://maps.app.goo.gl/ZBrsBiWBbdK1GSPH9" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-gold-outline">
+                                <i class="bi bi-map me-1"></i>Abrir en Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Formulario RSVP Interactivo para Dulce -->
+                <div class="col-lg-6 reveal-on-scroll">
+                    <div class="wax-envelope-card h-100 p-4 p-md-5">
+                        <h3 class="serif-font fw-bold mb-1">Confirmar Asistencia (RSVP)</h3>
+                        <p class="text-muted small mb-4">Elige tus favoritos para tener todo listo en nuestra noche especial.</p>
+
+                        <form id="rsvpForm" onsubmit="handleRsvpSubmit(event)">
+                            <div class="mb-3">
+                                <label class="form-label small fw-semibold text-uppercase" style="letter-spacing: 1px;">¿Aceptas esta cita conmigo?</label>
+                                <select class="form-select border-secondary-subtle" id="rsvpAttendance" required>
+                                    <option value="¡Sí, ahí estaré lista y hermosa! ❤️">¡Sí, ahí estaré lista y puntual! ❤️</option>
+                                    <option value="¡Claro que sí! Solo ajustemos un poquito la hora 🕰️">¡Claro que sí! Solo ajustemos un poquito la hora 🕰️</option>
+                                </select>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label small fw-semibold text-uppercase" style="letter-spacing: 1px;">Antojo de Platillo</label>
+                                    <select class="form-select border-secondary-subtle" id="rsvpDish" required>
+                                        <option value="Corte de Carne Fino">🥩 Corte de Carne</option>
+                                        <option value="Pasta Italiana Artesanal">🍝 Comida Italiana</option>
+                                        <option value="Salmón / Mariscos">🐟 Salmón o Mariscos</option>
+                                        <option value="Sorpréndeme tú">✨ ¡Sorpréndeme!</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label small fw-semibold text-uppercase" style="letter-spacing: 1px;">Postre Favorito</label>
+                                    <select class="form-select border-secondary-subtle" id="rsvpDessert" required>
+                                        <option value="Volcán de Chocolate">🍫 Postre de Chocolate</option>
+                                        <option value="Crepas Frutos Rojos">🍓 Crepas / Frutos Rojos</option>
+                                        <option value="Cheesecake / Tiramisú">🍰 Cheesecake o Tiramisú</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label small fw-semibold text-uppercase" style="letter-spacing: 1px;">Bebida para nuestro brindis</label>
+                                <select class="form-select border-secondary-subtle" id="rsvpDrink" required>
+                                    <option value="Vino Tinto">🍷 Copa de Vino Tinto</option>
+                                    <option value="Vino Rosado / Espumoso">🥂 Vino Rosado / Espumoso</option>
+                                    <option value="Cóctel de Autor / Mocktail">🍸 Cóctel Dulce o Mocktail</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label small fw-semibold text-uppercase" style="letter-spacing: 1px;">Mensaje para Marco o canción que no puede faltar</label>
+                                <textarea class="form-control border-secondary-subtle" id="rsvpMessage" rows="2" placeholder="Escribe un mensajito romántico o tu canción favorita..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-wine w-100 py-3 fw-semibold">
+                                <i class="bi bi-send-heart me-2"></i>Confirmar Cita y Generar Pase VIP
+                            </button>
+                        </form>
+
+                        <div id="vipTicketContainer" class="d-none mt-4 pt-2">
+                            <div class="vip-ticket p-4 text-center">
+                                <span class="badge rounded-pill mb-2" style="background: var(--gold-primary); color: var(--wine-dark);">PASE VIP CONFIRMADO</span>
+                                <h4 class="serif-font fw-bold mb-1">Marco &amp; Dulce — Cena de Aniversario</h4>
+                                <p class="small opacity-85 mb-3" id="ticketSummaryDate"></p>
+                                
+                                <div class="text-start p-3 rounded-3 mb-3 small" style="background: rgba(0,0,0,0.22); border: 1px dashed var(--gold-light);">
+                                    <div class="mb-1"><strong>Respuesta:</strong> <span id="tckAttendance"></span></div>
+                                    <div class="mb-1"><strong>Menú elegido:</strong> <span id="tckMenu"></span></div>
+                                    <div class="mb-1"><strong>Brindis con:</strong> <span id="tckDrink"></span></div>
+                                    <div><strong>Nota especial:</strong> <span id="tckNote" class="fst-italic"></span></div>
+                                </div>
+
+                                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                                    <a id="whatsappConfirmBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-sm px-3 py-2 fw-semibold" style="background: #25D366; color: #fff; border-radius: 50px;">
+                                        <i class="bi bi-whatsapp me-1"></i>Enviar a Marco por WhatsApp
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-gold-outline text-light px-3 py-2" onclick="copyTicketToClipboard()">
+                                        <i class="bi bi-clipboard-heart me-1"></i>Copiar Resumen
+                                    </button>
+                                </div>
+                                <div id="copyFeedbackMsg" class="small mt-2 text-warning d-none">¡Resumen copiado al portapapeles!</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         PIE DE PÁGINA
+         ========================================================================== -->
+    <footer class="py-5 text-center" style="background-color: var(--wine-dark); color: var(--bg-cream); border-top: 2px solid var(--gold-primary);">
+        <div class="container">
+            <h3 class="script-font display-5 mb-2" style="color: var(--gold-light);">Marco &amp; Dulce</h3>
+            <p class="serif-font fst-italic mb-3 opacity-85">"Te elegiría a ti; en cien vidas, en cien mundos, en cualquier versión de la realidad, te encontraría y te volvería a elegir."</p>
+            <div class="gold-divider my-3">
+                <span class="line"></span>
+                <i class="bi bi-heart-fill text-danger"></i>
+                <span class="line"></span>
+            </div>
+            <small class="opacity-75 d-block">Hecho con todo mi amor para celebrar nuestro aniversario.</small>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         WIDGET FLOTANTE DE MÚSICA
+         ========================================================================== -->
+    <div class="floating-music-widget">
+        <button class="music-toggle-circle" onclick="toggleMusic()" aria-label="Reproducir o pausar música">
+            <i class="bi bi-play-fill" id="floatingPlayIcon"></i>
+        </button>
+        <div class="pe-1">
+            <div class="fw-semibold" style="font-size: 0.75rem; color: var(--wine-primary); line-height: 1.1;">Nuestra Canción</div>
+            <small class="text-muted" style="font-size: 0.68rem;" id="floatingStatusLabel">Toca para escuchar</small>
+        </div>
+    </div>
+
+    <!-- Modales -->
+    <div class="modal fade" id="timelineDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 overflow-hidden" style="background: var(--bg-cream);">
+                <div class="position-relative">
+                    <img id="modalMemoryImg" src="" alt="Recuerdo" class="w-100" style="height: 300px; object-fit: cover;">
+                    <div id="modalCarouselContainer" class="d-none"></div>
+                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 bg-dark p-2 rounded-circle opacity-75" style="z-index: 10;" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <span id="modalMemoryDate" class="badge rounded-pill position-absolute bottom-0 start-0 m-3 px-3 py-2" style="background: var(--wine-primary); border: 1px solid var(--gold-primary); z-index: 10;"></span>
+                </div>
+                <div class="modal-body p-4">
+                    <h3 id="modalMemoryTitle" class="serif-font fw-bold mb-2" style="color: var(--wine-primary);"></h3>
+                    <blockquote id="modalMemoryQuote" class="fst-italic small p-2 rounded-3 mb-3" style="background: var(--bg-ivory); border-left: 3px solid var(--gold-primary);"></blockquote>
+                    <p id="modalMemoryDesc" class="text-muted mb-0"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="galleryLightboxModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-transparent border-0">
+                <div class="modal-body p-0 text-center position-relative">
+                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3 bg-dark p-2 rounded-circle" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <img id="lightboxImg" src="" alt="Vista ampliada" class="img-fluid rounded-4 shadow-lg" style="max-height: 82vh; border: 2px solid var(--gold-primary);">
+                    <div class="mt-2 p-2 rounded-3 d-inline-block px-4" style="background: rgba(44, 38, 39, 0.88); color: #fff;">
+                        <h5 id="lightboxCaption" class="serif-font mb-0" style="color: var(--gold-light);"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="configDatesModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0" style="background: var(--bg-cream);">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h4 class="modal-title serif-font fw-bold" style="color: var(--wine-primary);">
+                        <i class="bi bi-sliders me-2"></i>Personalizar Datos de Nuestro Aniversario
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="small text-muted mb-3">
+                        Ajusta aquí la fecha en que iniciaron su noviazgo, la fecha de la cena y tu número de WhatsApp para recibir la confirmación de Dulce.
+                    </p>
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold">Fecha en que empezamos a ser novios:</label>
+                        <input type="datetime-local" id="inputStartDate" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold">Fecha y hora de nuestra Cena de Aniversario:</label>
+                        <input type="datetime-local" id="inputDinnerDate" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold">Nombre del Restaurante / Lugar de la Cena:</label>
+                        <input type="text" id="inputDinnerPlace" class="form-control" placeholder="Ej. Terraza Italiana / Nuestro Restaurante Favorito">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold">WhatsApp de Marco (con código de país, ej. 524491234567):</label>
+                        <input type="text" id="inputWhatsappPhone" class="form-control" placeholder="524490000000">
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="resetDefaultConfig()">Restaurar valores por defecto</button>
+                    <button type="button" class="btn btn-wine px-4" onclick="saveCustomConfig()" data-bs-dismiss="modal">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elemento de Audio HTML5 -->
+    <audio id="bgAudioElement" loop preload="auto">
+        <source src="solo-tu-podras.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ==========================================================================
+         LÓGICA INTERACTIVA EN JAVASCRIPT
+         ========================================================================== -->
+    <script>
+        const DEFAULT_CONFIG = {
+            startDate: "2025-11-08T10:00",
+            dinnerDate: "2026-11-08T10:00",
+            dinnerPlace: "Restaurante & Terraza Romántica, Aguascalientes",
+            whatsappNumber: "524495807878"
+        };
+
+        const ROMANTIC_LETTER_MESSAGE = 
+`Hoy, mi amor, celebramos nuestro primer aniversario de muchísimos, y el haber tenido esta gran suerte de haberte encontrado, al igual que ambos decidir caminar uno al lado del otro desde hace un año y, al menos para mí, darte todo mi futuro, en verdad, mi amor.
+
+Gracias por tu ternura, por cada risa compartida, por apoyarme en cada paso y por iluminar mis días con esa mirada tan hermosa que tienes. Contigo aprendí que el amor verdadero se construye en los pequeños detalles y en la paz que siento cada vez que te abrazo.
+
+Sé que hemos tenido algunos problemas, pero juntos, hablando, hemos solucionado las adversidades. Gracias por todo, mi vida, en verdad te adoro con todo mi corazón, mi amor, y no quisiera que te separases de mí nunca.
+
+Prometo seguir cuidándote y cuidando nuestro amor, al igual que amarte mil millones de veces más, también el seguir sorprendiéndote y seguir sumando miles de aventuras juntos. ¡Feliz primer aniversario, mi amor! ¡TE AMO, y quiero muchísimo más aniversarios contigo, corazón!`;
+
+        const TIMELINE_MILESTONES = [
+            {
+                id: 1,
+                date: "El Comienzo",
+                title: "El Primer Encuentro",
+                icon: "bi-stars",
+                quote: "«Desde el primer instante en el que cruzamos miradas literalmente, supe que había algo mágico en ti.»",
+                shortDesc: "El día en que nuestros caminos coincidieron y comenzó a escribirse nuestra historia.",
+                fullDesc: "Aunque fue un poco espontaneo, conocerte cambió mi mundo por completo. Tu sonrisa y tu forma de hablar se quedaron grabadas en mi mente desde ese primer día.",
+                image: "IMG_2124.jpg"
+            },
+            {
+                id: 2,
+                date: "Nervios e Ilusión",
+                title: "Nuestra Primera Cita",
+                icon: "bi-cup-hot-fill",
+                quote: "«Las horas pasaron como segundos platicando contigo.»",
+                shortDesc: "Risas, miradas cómplices y el deseo de que ese momento no terminara nunca.",
+                fullDesc: "Recuerdo perfectamente los nervios en nuestra primer cita y cómo desaparecieron en cuanto me sonreíste. Platicamos de todo y sentí una conexión tan genuina que decidi no quererme desprender de ti.",
+                image: "IMG_2438.jpg"
+            },
+            {
+                id: 3,
+                date: "Nuestra Fecha Especial",
+                title: "El «Sí» Oficial como Novios",
+                icon: "bi-heart-fill",
+                quote: "«¿Quieres ser mi novia? — La pregunta más hermosa que te he hecho.»",
+                shortDesc: "El día en que formalizamos nuestro amor.",
+                fullDesc: "Ese instante quedó guardado para siempre en mi corazón por el miedo y nervios de el que dirias. Escucharte decir que sí me hizo el hombre más feliz del mundo y dio inicio oficial a esta aventura llamada 'Nosotros'.",
+                image: "IMG_2504.jpg"
+            },
+            {
+                id: 4,
+                date: "Descubriendo el Mundo",
+                title: "Nuestros Viajes y Aventuras",
+                icon: "bi-compass-fill",
+                quote: "«Mi lugar favorito en el mundo siempre será a tu lado.»",
+                shortDesc: "Paseos, escapadas, atardeceres y miles de fotografías juntos.",
+                fullDesc: "Cada salida, cada viaje y cada plan improvisado contigo se transforma en un recuerdo inolvidable. Eres mi mejor compañera de aventuras y de vida.",
+                images: [
+                    "IMG_2896.jpg",
+                    "IMG_3285.JPG",
+                    "IMG_2839.jpg",
+                    "IMG_2657.jpg",
+                    "IMG_2498.jpg",
+                    "1.jpeg",
+                    "2.jpeg",
+                    "3.JPG",
+                    "4.JPG",
+                    "5.jpg",
+                    "IMG_4035.jpg",
+                    "11.JPG",
+                    "12.JPG",
+                    "13.JPG",
+                    "14.JPG",
+                    "15.JPG",
+                    "16.JPG",
+                    "17.JPG"
+                ]
+            },
+            {
+                id: 5,
+                date: "Hoy y Siempre",
+                title: "Nuestro Aniversario",
+                icon: "bi-gem",
+                quote: "«Y lo mejor de nuestra historia es que apenas estamos en los primeros capítulos.»",
+                shortDesc: "Celebrando todo lo que hemos crecido y todo lo hermoso que está por venir.",
+                fullDesc: "Hoy celebramos por el amor tan bonito que tenemos, por nuestra complicidad y por todos los sueños que vamos a cumplir juntos de la mano. ¡Te amo, Dulce!",
+                image: "IMG_3957.JPG"
+            }
+        ];
+
+        let galleryPhotos = [
+            {
+                url: "16.JPG",
+                caption: "Risas que iluminan mi vida",
+                category: "citas"
+            },
+            {
+                url: "IMG_4154.JPG",
+                caption: "Celebrando cada logro juntos",
+                category: "especiales"
+            },
+            {
+                url: "12.JPG",
+                caption: "Nuestras cenas románticas",
+                category: "citas"
+            },
+            {
+                url: "IMG_2498.jpg",
+                caption: "Escapadas inolvidables",
+                category: "viajes"
+            },
+            {
+                url: "IMG_3359.JPG",
+                caption: "Detalles llenos de amor",
+                category: "especiales"
+            }
+        ];
+
+        let currentCounterMode = 'together';
+        let appConfig = loadConfig();
+
+        function loadConfig() {
+            try {
+                const saved = localStorage.getItem('marco_dulce_config');
+                return saved ? { ...DEFAULT_CONFIG, ...JSON.parse(saved) } : { ...DEFAULT_CONFIG };
+            } catch (e) {
+                return { ...DEFAULT_CONFIG };
+            }
+        }
+
+        function saveCustomConfig() {
+            const startVal = document.getElementById('inputStartDate').value;
+            const dinnerVal = document.getElementById('inputDinnerDate').value;
+            const placeVal = document.getElementById('inputDinnerPlace').value.trim();
+            const phoneVal = document.getElementById('inputWhatsappPhone').value.replace(/\D/g, '');
+
+            if (startVal) appConfig.startDate = startVal;
+            if (dinnerVal) appConfig.dinnerDate = dinnerVal;
+            if (placeVal) appConfig.dinnerPlace = placeVal;
+            if (phoneVal) appConfig.whatsappNumber = phoneVal;
+
+            try {
+                localStorage.setItem('marco_dulce_config', JSON.stringify(appConfig));
+            } catch (e) {}
+
+            updateUIWithConfig();
+            updateRealTimeCounter();
+        }
+
+        function resetDefaultConfig() {
+            appConfig = { ...DEFAULT_CONFIG };
+            try {
+                localStorage.removeItem('marco_dulce_config');
+            } catch (e) {}
+            populateConfigInputs();
+            updateUIWithConfig();
+            updateRealTimeCounter();
+        }
+
+        function populateConfigInputs() {
+            document.getElementById('inputStartDate').value = appConfig.startDate;
+            document.getElementById('inputDinnerDate').value = appConfig.dinnerDate;
+            document.getElementById('inputDinnerPlace').value = appConfig.dinnerPlace;
+            document.getElementById('inputWhatsappPhone').value = appConfig.whatsappNumber;
+        }
+
+        function updateUIWithConfig() {
+            document.getElementById('dinnerPlaceTitle').textContent = appConfig.dinnerPlace;
+            const dDate = new Date(appConfig.dinnerDate);
+            if (!isNaN(dDate)) {
+                const options = { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
+                const formatted = dDate.toLocaleDateString('es-MX', options);
+                document.getElementById('dinnerDateFormatted').textContent = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+            }
+        }
+
+        function switchCounterMode(mode) {
+            currentCounterMode = mode;
+            document.getElementById('btnModeTogether').classList.toggle('active', mode === 'together');
+            document.getElementById('btnModeDinner').classList.toggle('active', mode === 'dinner');
+
+            const subtitle = document.getElementById('counterSubtitle');
+            const lblDays = document.getElementById('lblDays');
+            if (mode === 'together') {
+                subtitle.textContent = 'Sumando instantes inolvidables desde nuestro primer día';
+                lblDays.textContent = 'Días Juntos';
+            } else {
+                subtitle.textContent = 'Cuenta regresiva para nuestra velada especial de aniversario';
+                lblDays.textContent = 'Días Faltantes';
+            }
+            updateRealTimeCounter();
+        }
+
+        function updateRealTimeCounter() {
+            const now = new Date();
+            const targetDate = new Date(currentCounterMode === 'together' ? appConfig.startDate : appConfig.dinnerDate);
+            
+            let diffMs = currentCounterMode === 'together' ? (now - targetDate) : (targetDate - now);
+            if (diffMs < 0) diffMs = 0;
+
+            const totalSeconds = Math.floor(diffMs / 1000);
+            const days = Math.floor(totalSeconds / (3600 * 24));
+            const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            document.getElementById('cntDays').textContent = String(days).padStart(2, '0');
+            document.getElementById('cntHours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('cntMinutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('cntSeconds').textContent = String(seconds).padStart(2, '0');
+
+            const badge = document.getElementById('detailedTimeBadge');
+            if (currentCounterMode === 'together') {
+                let years = now.getFullYear() - targetDate.getFullYear();
+                let months = now.getMonth() - targetDate.getMonth();
+                let remDays = now.getDate() - targetDate.getDate();
+
+                const nowTime = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+                const targetTime = targetDate.getHours() * 3600 + targetDate.getMinutes() * 60 + targetDate.getSeconds();
+                if (nowTime < targetTime) {
+                    remDays--;
+                }
+
+                if (remDays < 0) {
+                    months--;
+                    const prevMonthLastDay = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                    remDays += prevMonthLastDay;
+                }
+
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
+
+                if (years < 0) { years = 0; months = 0; remDays = 0; }
+
+                badge.innerHTML = `<i class="bi bi-suit-heart-fill me-1" style="color: var(--gold-primary);"></i> Equivalente a <strong>${years} año(s), ${months} mes(es) y ${remDays} día(s)</strong> de amor incondicional.`;
+            } else {
+                if (diffMs === 0) {
+                    badge.innerHTML = `<span class="badge bg-warning text-dark px-3 py-2">¡Llegó el momento de nuestra cena de aniversario! 🥂</span>`;
+                } else {
+                    badge.innerHTML = `<i class="bi bi-sparkles me-1" style="color: var(--gold-primary);"></i> Prepárate para una noche mágica en <strong>${appConfig.dinnerPlace}</strong>.`;
+                }
+            }
+        }
+
+        let isPlayingMusic = false;
+        let useSynthMusicBox = false;
+        let audioCtx = null;
+        let synthInterval = null;
+        const audioEl = document.getElementById('bgAudioElement');
+
+        const MUSIC_BOX_NOTES = [523.25, 659.25, 783.99, 1046.50, 783.99, 659.25, 587.33, 698.46, 880.00, 698.46, 587.33, 493.88, 587.33, 783.99, 659.25];
+        let noteIndex = 0;
+
+        function playMusicBoxNote(freq) {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContextClass();
+            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 0.04);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.4);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 1.45);
+        }
+
+        function startSynthMelody() {
+            stopSynthMelody();
+            synthInterval = setInterval(() => {
+                playMusicBoxNote(MUSIC_BOX_NOTES[noteIndex % MUSIC_BOX_NOTES.length]);
+                noteIndex++;
+            }, 550);
+        }
+
+        function stopSynthMelody() {
+            if (synthInterval) {
+                clearInterval(synthInterval);
+                synthInterval = null;
+            }
+        }
+
+        function toggleMusic() {
+            if (isPlayingMusic) {
+                pauseAllMusic();
+            } else {
+                startMusicPlayback();
+            }
+        }
+
+        function startMusicPlayback() {
+            if (useSynthMusicBox) {
+                startSynthMelody();
+                isPlayingMusic = true;
+                updateMusicUI(true, "Caja de música romántica sonando ♪");
+            } else {
+                audioEl.play().then(() => {
+                    isPlayingMusic = true;
+                    updateMusicUI(true, "Reproduciendo nuestra melodía ♪");
+                }).catch(() => {
+                    useSynthMusicBox = true;
+                    startSynthMelody();
+                    isPlayingMusic = true;
+                    updateMusicUI(true, "Caja de música romántica activa ♪");
+                });
+            }
+        }
+
+        function pauseAllMusic() {
+            audioEl.pause();
+            stopSynthMelody();
+            isPlayingMusic = false;
+            updateMusicUI(false, "Música en pausa");
+        }
+
+        function restartMusic() {
+            audioEl.currentTime = 0;
+            noteIndex = 0;
+            if (!isPlayingMusic) startMusicPlayback();
+        }
+
+        function toggleMusicMode() {
+            const wasPlaying = isPlayingMusic;
+            pauseAllMusic();
+            useSynthMusicBox = !useSynthMusicBox;
+            document.getElementById('songArtistDisplay').textContent = useSynthMusicBox 
+                ? "Modo Caja de Música Sintetizada — Para Dulce" 
+                : "Solo Tú Podrás - Nivel Codiciado & Abelito Balderas — Para Dulce";
+            if (wasPlaying) startMusicPlayback();
+        }
+
+        function updateMusicUI(playing, statusText) {
+            const mainIcon = document.getElementById('mainPlayIcon');
+            const floatIcon = document.getElementById('floatingPlayIcon');
+            const vinyl = document.getElementById('vinylDisc');
+
+            mainIcon.className = playing ? 'bi bi-pause-fill fs-3' : 'bi bi-play-fill fs-3';
+            floatIcon.className = playing ? 'bi bi-pause-fill' : 'bi bi-play-fill';
+            vinyl.classList.toggle('playing', playing);
+
+            document.getElementById('musicStatusText').textContent = statusText;
+            document.getElementById('floatingStatusLabel').textContent = playing ? "Sonando ahora ♪" : "En pausa";
+        }
+
+        document.getElementById('localAudioInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const url = URL.createObjectURL(file);
+            audioEl.src = url;
+            useSynthMusicBox = false;
+            document.getElementById('songTitleDisplay').textContent = file.name.replace(/\.[^/.]+$/, "");
+            document.getElementById('songArtistDisplay').textContent = "Nuestra Canción Personalizada";
+            startMusicPlayback();
+        });
+
+        /* ==========================================================================
+           4. CARTA CON BLOQUEO HASTA EL 8 DE NOVIEMBRE DE 2026
+           ========================================================================== */
+        let letterTimer = null;
+
+        function openRomanticLetter() {
+            // Fecha de desbloqueo: 8 de noviembre de 2026 (00:00 hrs)
+            const unlockDate = new Date("2026-11-08T00:00:00");
+            const now = new Date();
+
+            // Descomenta la línea de abajo si quieres probar abriéndola hoy mismo forzadamente:
+            // const bypassLock = false; 
+
+            if (now < unlockDate) {
+                // Si aún no es 8 de noviembre de 2026, muestra el aviso de bloqueo
+                const warningEl = document.getElementById('letterLockedWarning');
+                warningEl.classList.remove('d-none');
+                return;
+            }
+
+            // Si ya es el día o después, abre la carta con normalidad
+            document.getElementById('letterLockedWarning').classList.add('d-none');
+            document.getElementById('envelopeClosedState').classList.add('d-none');
+            document.getElementById('envelopeOpenState').classList.remove('d-none');
+
+            if (!isPlayingMusic) {
+                startMusicPlayback();
+            }
+
+            const targetEl = document.getElementById('typewriterLetterText');
+            targetEl.textContent = '';
+            let charIdx = 0;
+
+            if (letterTimer) clearInterval(letterTimer);
+            letterTimer = setInterval(() => {
+                if (charIdx < ROMANTIC_LETTER_MESSAGE.length) {
+                    targetEl.textContent += ROMANTIC_LETTER_MESSAGE.charAt(charIdx);
+                    charIdx++;
+                } else {
+                    clearInterval(letterTimer);
+                }
+            }, 22);
+        }
+
+        function closeRomanticLetter() {
+            if (letterTimer) clearInterval(letterTimer);
+            document.getElementById('envelopeOpenState').classList.add('d-none');
+            document.getElementById('envelopeClosedState').classList.remove('d-none');
+        }
+
+        /* ==========================================================================
+           5. RENDERIZADO DE LA LÍNEA DEL TIEMPO Y CARRUSEL EN MODAL
+           ========================================================================== */
+        function renderTimeline() {
+            const container = document.getElementById('timelineContainer');
+            container.innerHTML = TIMELINE_MILESTONES.map((item, idx) => {
+                const isLeft = idx % 2 === 0;
+                return `
+                <div class="row timeline-item align-items-center g-0">
+                    <div class="col-md-5 ${isLeft ? 'order-md-1 text-md-end pe-md-4' : 'order-md-3 ps-md-4'} ps-5">
+                        <div class="timeline-card p-3 p-sm-4" onclick="openTimelineModal(${item.id})">
+                            <span class="badge rounded-pill mb-2" style="background: var(--bg-ivory); color: var(--wine-primary); border: 1px solid var(--gold-primary);">
+                                ${item.date}
+                            </span>
+                            <h4 class="serif-font fw-bold mb-2" style="color: var(--wine-primary);">${item.title}</h4>
+                            <p class="text-muted small mb-3">${item.shortDesc}</p>
+                            <span class="small fw-semibold" style="color: var(--gold-primary);">
+                                Ver recuerdo completo <i class="bi bi-arrow-right-short"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 order-md-2 position-relative">
+                        <div class="timeline-dot">
+                            <i class="bi ${item.icon}"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-5 ${isLeft ? 'order-md-3' : 'order-md-1'} d-none d-md-block"></div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function openTimelineModal(id) {
+            const item = TIMELINE_MILESTONES.find(m => m.id === id);
+            if (!item) return;
+
+            const singleImgEl = document.getElementById('modalMemoryImg');
+            const carouselContainerEl = document.getElementById('modalCarouselContainer');
+
+            if (item.images && item.images.length > 0) {
+                singleImgEl.classList.add('d-none');
+                carouselContainerEl.classList.remove('d-none');
+
+                const carouselId = `modalMemoryCarousel_${item.id}`;
+                const indicatorsHtml = item.images.map((_, index) => `
+                    <button type="button" data-bs-target="#${carouselId}" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : 'false'}"></button>
+                `).join('');
+
+                const slidesHtml = item.images.map((imgUrl, index) => `
+                    <div class="carousel-item ${index === 0 ? 'active' : ''}" data-bs-interval="3500">
+                        <img src="${imgUrl}" class="d-block w-100" alt="${item.title} - Foto ${index + 1}">
+                    </div>
+                `).join('');
+
+                carouselContainerEl.innerHTML = `
+                    <div id="${carouselId}" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-indicators" style="margin-bottom: 0.5rem;">
+                            ${indicatorsHtml}
+                        </div>
+                        <div class="carousel-inner">
+                            ${slidesHtml}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Anterior</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Siguiente</span>
+                        </button>
+                    </div>
+                `;
+            } else {
+                carouselContainerEl.classList.add('d-none');
+                carouselContainerEl.innerHTML = '';
+                singleImgEl.classList.remove('d-none');
+                singleImgEl.src = item.image;
+            }
+
+            document.getElementById('modalMemoryDate').textContent = item.date;
+            document.getElementById('modalMemoryTitle').textContent = item.title;
+            document.getElementById('modalMemoryQuote').textContent = item.quote;
+            document.getElementById('modalMemoryDesc').textContent = item.fullDesc;
+
+            const modal = new bootstrap.Modal(document.getElementById('timelineDetailModal'));
+            modal.show();
+        }
+
+        /* ==========================================================================
+           6. GALERÍA DE FOTOS FILTRABLE Y SUBIDA DE FOTOS DE PRUEBA
+           ========================================================================== */
+        function renderGallery(filter = 'todos') {
+            const container = document.getElementById('photoGridContainer');
+            const filtered = filter === 'todos' ? galleryPhotos : galleryPhotos.filter(p => p.category === filter);
+
+            container.innerHTML = filtered.map((photo) => `
+                <div class="col-sm-6 col-lg-4">
+                    <div class="gallery-card shadow-sm" onclick="openLightbox('${photo.url}', '${photo.caption.replace(/'/g, "\\'")}')">
+                        <img src="${photo.url}" alt="${photo.caption}" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="badge rounded-pill align-self-start mb-1" style="background: var(--gold-primary); color: var(--wine-dark); font-size: 0.65rem; text-transform: uppercase;">
+                                ${photo.category}
+                            </span>
+                            <h5 class="serif-font fw-bold mb-0">${photo.caption}</h5>
+                            <small class="opacity-75"><i class="bi bi-zoom-in me-1"></i>Clic para ampliar</small>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterGallery(category, btnEl) {
+            document.querySelectorAll('#galleryFilters .filter-btn').forEach(b => {
+                b.classList.remove('btn-wine', 'active');
+                b.classList.add('btn-gold-outline');
+            });
+            btnEl.classList.remove('btn-gold-outline');
+            btnEl.classList.add('btn-wine', 'active');
+            renderGallery(category);
+        }
+
+        function openLightbox(url, caption) {
+            document.getElementById('lightboxImg').src = url;
+            document.getElementById('lightboxCaption').textContent = caption;
+            const modal = new bootstrap.Modal(document.getElementById('galleryLightboxModal'));
+            modal.show();
+        }
+
+        document.getElementById('customPhotoUpload').addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            if (!files.length) return;
+
+            files.forEach((file, idx) => {
+                const url = URL.createObjectURL(file);
+                galleryPhotos.unshift({
+                    url: url,
+                    caption: `Nuestro Recuerdo Especial #${idx + 1}`,
+                    category: 'especiales'
+                });
+            });
+            renderGallery('todos');
+        });
+
+        /* ==========================================================================
+           7. CONFIRMACIÓN DE CENA (RSVP), PASE VIP Y ENVÍO A WHATSAPP
+           ========================================================================== */
+        let currentTicketText = "";
+
+        function handleRsvpSubmit(e) {
+            e.preventDefault();
+            const attendance = document.getElementById('rsvpAttendance').value;
+            const dish = document.getElementById('rsvpDish').value;
+            const dessert = document.getElementById('rsvpDessert').value;
+            const drink = document.getElementById('rsvpDrink').value;
+            const note = document.getElementById('rsvpMessage').value.trim() || "¡Lista para celebrar nuestro aniversario! Te amo.";
+
+            document.getElementById('ticketSummaryDate').textContent = `${document.getElementById('dinnerDateFormatted').textContent} • ${appConfig.dinnerPlace}`;
+            document.getElementById('tckAttendance').textContent = attendance;
+            document.getElementById('tckMenu').textContent = `${dish} + ${dessert}`;
+            document.getElementById('tckDrink').textContent = drink;
+            document.getElementById('tckNote').textContent = `"${note}"`;
+
+            const ticketBox = document.getElementById('vipTicketContainer');
+            ticketBox.classList.remove('d-none');
+
+            currentTicketText = `❤️ *CONFIRMACIÓN CENA DE ANIVERSARIO (MARCO & DULCE)* ❤️\n\n` +
+                `✨ *Asistencia:* ${attendance}\n` +
+                `📍 *Lugar:* ${appConfig.dinnerPlace}\n` +
+                `🍽️ *Platillo y Postre:* ${dish} + ${dessert}\n` +
+                `🥂 *Bebida:* ${drink}\n` +
+                `💌 *Mensaje de Dulce:* ${note}`;
+
+            const waUrl = `https://wa.me/${appConfig.whatsappNumber}?text=${encodeURIComponent(currentTicketText)}`;
+            document.getElementById('whatsappConfirmBtn').href = waUrl;
+
+            triggerCelebrationHearts();
+            ticketBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function copyTicketToClipboard() {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = currentTicketText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const feedback = document.getElementById('copyFeedbackMsg');
+            feedback.classList.remove('d-none');
+            setTimeout(() => feedback.classList.add('d-none'), 3000);
+        }
+
+        function triggerCelebrationHearts() {
+            for (let i = 0; i < 24; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'fixed';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.bottom = '-30px';
+                heart.style.fontSize = (Math.random() * 18 + 16) + 'px';
+                heart.style.zIndex = '9999';
+                heart.style.pointerEvents = 'none';
+                heart.style.transition = `transform ${Math.random() * 2 + 2.2}s ease-out, opacity 2.5s ease`;
+                document.body.appendChild(heart);
+
+                requestAnimationFrame(() => {
+                    heart.style.transform = `translateY(-${window.innerHeight + 100}px) rotate(${Math.random() * 90 - 45}deg)`;
+                    heart.style.opacity = '0';
+                });
+
+                setTimeout(() => heart.remove(), 4000);
+            }
+        }
+
+        /* ==========================================================================
+           8. LIENZO DE PARTÍCULAS Y PÉTALOS FLOTANTES EN EL HERO
+           ========================================================================== */
+        function initHeroParticles() {
+            const canvas = document.getElementById('petalsCanvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            const particles = [];
+
+            function resize() {
+                width = canvas.width = canvas.parentElement.offsetWidth;
+                height = canvas.height = canvas.parentElement.offsetHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            for (let i = 0; i < 35; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    r: Math.random() * 3.5 + 1.5,
+                    speedY: Math.random() * 0.5 + 0.2,
+                    speedX: Math.random() * 0.4 - 0.2,
+                    alpha: Math.random() * 0.55 + 0.2,
+                    isGold: Math.random() > 0.4
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = p.isGold 
+                        ? `rgba(229, 200, 142, ${p.alpha})` 
+                        : `rgba(255, 195, 205, ${p.alpha})`;
+                    ctx.fill();
+
+                    p.y -= p.speedY;
+                    p.x += p.speedX;
+
+                    if (p.y < -10) {
+                        p.y = height + 10;
+                        p.x = Math.random() * width;
+                    }
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        /* ==========================================================================
+           9. INICIALIZACIÓN AL CARGAR LA PÁGINA
+           ========================================================================== */
+        window.onload = function() {
+            populateConfigInputs();
+            updateUIWithConfig();
+            updateRealTimeCounter();
+            setInterval(updateRealTimeCounter, 1000);
+
+            renderTimeline();
+            renderGallery('todos');
+            initHeroParticles();
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+        };
+    </script>
+</body>
+</html>
