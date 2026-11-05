@@ -951,7 +951,7 @@
                                 <div class="col-sm-6">
                                     <div class="p-3 rounded-3 h-100" style="background: var(--bg-cream); border: 1px solid rgba(197, 160, 89, 0.25);">
                                         <small class="text-muted d-block text-uppercase" style="font-size: 0.7rem; letter-spacing: 1px;">Fecha y Hora</small>
-                                        <strong class="d-block mt-1" id="dinnerDateFormatted">Sábado, hora por definir :D</strong>
+                                        <strong class="d-block mt-1" id="dinnerDateFormatted"> Domingo, 8 de noviembre, 10:00 p.m.  </strong>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -977,8 +977,10 @@
                                     loading="lazy" 
                                     allowfullscreen 
                                     referrerpolicy="no-referrer-when-downgrade"
-                                    src="https://www.openstreetmap.org/export/embed.html?bbox=-102.3150%2C21.8700%2C-102.2750%2C21.9050&amp;layer=mapnik&amp;marker=21.8853%2C-102.2916">
+                                    src="https://www.openstreetmap.org/export/embed?bbox=-102.30396062135698%2C21.878982664718126%2C-102.30042010545732%2C21.881207829079823&amp;layer=mapnik">
+                                    
                                 </iframe>
+                                
                             </div>
                         </div>
 
@@ -995,7 +997,9 @@
                 <div class="col-lg-6 reveal-on-scroll">
                     <div class="wax-envelope-card h-100 p-4 p-md-5">
                         <h3 class="serif-font fw-bold mb-1">Confirmar Asistencia (RSVP)</h3>
-                        <p class="text-muted small mb-4">Elige tus favoritos para tener todo listo en nuestra noche especial.</p>
+                        <p class="text-muted small mb-4">Elige tus favoritos para tener todo listo en nuestra noche especial.
+                            no se muy bien si va a ver lo que pidas pero 
+                        </p>
 
                         <form id="rsvpForm" onsubmit="handleRsvpSubmit(event)">
                             <div class="mb-3">
@@ -1010,18 +1014,18 @@
                                 <div class="col-sm-6">
                                     <label class="form-label small fw-semibold text-uppercase" style="letter-spacing: 1px;">Antojo de Platillo</label>
                                     <select class="form-select border-secondary-subtle" id="rsvpDish" required>
-                                        <option value="Corte de Carne Fino">🥩 Corte de Carne</option>
-                                        <option value="Pasta Italiana Artesanal">🍝 Comida Italiana</option>
+                                        <option value="Corte de Carne Fino">🍕 Pizza </option>
+                                        <option value="Pasta Italiana Artesanal"> Pasta Italiana</option>
                                         <option value="Salmón / Mariscos">🐟 Salmón o Mariscos</option>
-                                        <option value="Sorpréndeme tú">✨ ¡Sorpréndeme!</option>
+                                        <option value="Sorpréndeme tú">✨ ¡Sorprendamonos ahi mismo!</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="form-label small fw-semibold text-uppercase" style="letter-spacing: 1px;">Postre Favorito</label>
                                     <select class="form-select border-secondary-subtle" id="rsvpDessert" required>
-                                        <option value="Volcán de Chocolate">🍫 Postre de Chocolate</option>
-                                        <option value="Crepas Frutos Rojos">🍓 Crepas / Frutos Rojos</option>
-                                        <option value="Cheesecake / Tiramisú">🍰 Cheesecake o Tiramisú</option>
+                                        <option value="Volcán de Chocolate">Tiramisú</option>
+                                        <option value="Crepas Frutos Rojos">Mousse de avellana</option>
+                                        <option value="Cheesecake / Tiramisú">Panna cotta al Amaentto</option>
                                     </select>
                                 </div>
                             </div>
@@ -1190,7 +1194,7 @@
     <script>
         const DEFAULT_CONFIG = {
             startDate: "2025-11-08T10:00",
-            dinnerDate: "2026-11-08T10:00",
+            dinnerDate: "2026-11-08T20:00",
             dinnerPlace: "Restaurante & Terraza Romántica, Aguascalientes",
             whatsappNumber: "524495807878"
         };
